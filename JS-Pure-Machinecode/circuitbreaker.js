@@ -58,7 +58,7 @@ function circuitBreakerWithPolling(fn,maximumFailureAllowed,timeThreshold,maxRet
                     break
                 }
                 if(attempt<=maxRetryAttempt){
-                   await new Promise((result)=>setTimeout(result,delay))
+                   await new Promise((res)=>setTimeout(res,delay))
                 }
                 console.log("An Error in executing function")
             }
