@@ -29,7 +29,7 @@ function circuitBreaker(fn,totalAllowedFilaureCount,timeThreshold){
     }
 }
 
-function circuitBreakerWithPolling(fn,maximumFailureAllowed,timeThreshold,maxRetryAttempt,delayForRetry){
+function circuitBreakerWithPolling(fn,totalAllowedFilaureCount,timeThreshold,maxRetryAttempt,delayForRetry){
     let isOpen=false
     let lastErrorTime=null
     let failureCount=0
@@ -58,7 +58,7 @@ function circuitBreakerWithPolling(fn,maximumFailureAllowed,timeThreshold,maxRet
                     break
                 }
                 if(attempt<=maxRetryAttempt){
-                   await new Promise((res)=>setTimeout(res,delay))
+                   await new Promise((res)=>setTimeout(res,delayForRetry))
                 }
                 console.log("An Error in executing function")
             }
